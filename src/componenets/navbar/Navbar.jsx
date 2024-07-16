@@ -36,9 +36,9 @@ const Navbar = () => {
       </ul>
 
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="" />
+      <i class="fa-solid fa-magnifying-glass"></i>
         <div className="navbar-search-icon">
-          <img src={assets.basket_icon} alt="" />
+        <i class="fa-solid fa-cart-shopping"></i>
           <div className="dot"></div>
         </div>
         <button>Sign in</button>

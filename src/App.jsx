@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./componenets/Footer/Footer";
+import ScrollToTop from "./componenets/scrollToTop/ScrollToTop";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         </Routes>
       </div>
       <Footer />
+      <ScrollToTop />
     </>
   );
 };

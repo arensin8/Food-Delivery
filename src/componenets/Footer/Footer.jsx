@@ -1,12 +1,16 @@
 import { assets } from "../../assets/assets";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <div className="footer" id="footer">
       <div className="footerContent">
         <div className="footerContentLeft">
-          <img src={assets.logo} alt="logo" />
+          <Link to="/">
+            <img src={assets.logo1} alt="logo" />
+          </Link>
+
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
             voluptatem provident cum nostrum praesentium odit ut commodi ducimus
@@ -14,9 +18,9 @@ const Footer = () => {
             atque nam saepe amet voluptatibus.
           </p>
           <div className="footerSocialIcons">
-            <img src={assets.facebook_icon} alt="" />
-            <img src={assets.twitter_icon} alt="" />
-            <img src={assets.linkedin_icon} alt="" />
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
           </div>
         </div>
         <div className="footerContentCenter">

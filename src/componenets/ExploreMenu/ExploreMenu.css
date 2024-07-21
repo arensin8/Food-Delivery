@@ -55,3 +55,11 @@
   padding: 0.5px;
   transition: 0.1s;
 }
+
+@media screen and (max-width: 1050px) {
+  .exploreMenuText {
+    max-width: 100%;
+    font-size: 14px;
+    text-align: justify;
+  }
+}

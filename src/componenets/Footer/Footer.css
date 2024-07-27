@@ -19,7 +19,8 @@
 
 .footerContentLeft img {
   cursor: pointer;
-  width: 120px;
+  width: 50px;
+  border-radius: 50%;
 }
 
 .footerContentLeft,

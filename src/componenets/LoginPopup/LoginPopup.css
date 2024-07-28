@@ -55,3 +55,20 @@
   font-size: 15px;
   cursor: pointer;
 }
+
+.loginPopupCondition {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  margin-top: -15px;
+}
+
+.loginPopupCondition input {
+  margin-top: 5px;
+}
+
+.loginPopup span {
+  color: #db752b;
+  font-weight: 500;
+  cursor: pointer;
+}

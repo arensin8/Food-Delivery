@@ -101,3 +101,18 @@
   color: white;
   border-radius: 4px;
 }
+
+@media screen and (max-width: 768px) {
+  .cartBottom {
+    flex-direction: column-reverse;
+  }
+  .cartPromoCode {
+    justify-content: start;
+  }
+  .cartItemsItem .addDelete {
+    gap: 3px;
+  }
+  .cartItemsItem .addDelete img {
+    width: 20px;
+  }
+}

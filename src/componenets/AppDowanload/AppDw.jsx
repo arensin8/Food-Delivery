@@ -6,7 +6,7 @@ const AppDw = () => {
     <>
       <div className="appDw" id="AppDw">
         <p>
-          Fpr better experience download
+          For better experience download
           <br /> Aren's Delivery app
         </p>
         <div className="appDwPlatforms">

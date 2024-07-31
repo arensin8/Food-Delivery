@@ -49,3 +49,10 @@
 .placeOrder .cartTotal button {
   margin-top: 30px;
 }
+
+
+@media screen and (max-width : 768px) {
+  .placeOrder {
+    flex-direction: column;
+  }
+}

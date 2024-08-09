@@ -24,3 +24,7 @@ hr{
   height: 1px;
   background-color: #a9a9a9;
 }
+
+.appContent{
+  display: flex;
+}

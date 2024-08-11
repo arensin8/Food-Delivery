@@ -1,6 +1,6 @@
 import './Add.css';
 import {assets} from '../../assets/assets.js'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios'
 
 const Add = () => {
@@ -20,16 +20,13 @@ const Add = () => {
         setData((data) => ({...data , [name] : value}))
     }
 
-    // Just for checking 
-    // useEffect(() => {
-    //     console.log(data);
-    // }, [data]) 
 
     const onSubmitHandler = async (event) => {
         event.preventDefault()
         const formData = new FormData();
         for (const key in data) {
-            if (data.hasOwnProperty(key)) {  // Ensuring the key is a property of data
+            // Ensuring the key is a property of data
+            if (data.hasOwnProperty(key)) {  
                 formData.append(key, data[key]);
             }
         }

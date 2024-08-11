@@ -28,3 +28,9 @@ hr{
 .appContent{
   display: flex;
 }
+
+.flexCol{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

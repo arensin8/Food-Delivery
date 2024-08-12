@@ -2,6 +2,7 @@ import './Add.css';
 import {assets} from '../../assets/assets.js'
 import { useState } from 'react';
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 const Add = () => {
 
@@ -41,8 +42,10 @@ const Add = () => {
                     category: 'Salad',
                 });
                 setImage(false);
+                toast.success(response.data.message)
             } else {
                 console.log('Server responded with an error:', response.data);
+                toast.error(response.data.message)
             }
         } catch (error) {
             console.error('An error occurred:', error.response ? error.response.data : error.message);

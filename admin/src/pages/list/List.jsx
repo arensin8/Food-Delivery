@@ -19,6 +19,18 @@ const List = () => {
         }
     }
 
+    const removeFood = async (foodId) => {
+        try {
+            const result = await axios.delete(`${url}/api/food/remove/${foodId}`);
+            toast.success("Food deleted successfully!");
+            await fetchList();
+        } catch (error) {
+            console.error('Error deleting food:', error.response ? error.response.data : error.message);
+            toast.error("Error deleting food!");
+        }
+    };
+    
+
     useEffect(() => {
         fetchList()
     },[])
@@ -35,12 +47,12 @@ const List = () => {
                 </div>
                 {list.map((item,index) => {
                     return (
-                        <div className='listTableFormat'>
+                        <div className='listTableFormat' key={index}>
                             <img src={`${url}/images/`+item.image} alt="" />
                             <p>{item.name}</p>
                             <p>{item.category}</p>
-                            <p>{item.price}</p>
-                            <p className='cursor'>X</p>
+                            <p>${item.price}</p>
+                            <p onClick={() => removeFood(item._id)} className='cursor'>X</p>
                         </div>
                     )
                 })}

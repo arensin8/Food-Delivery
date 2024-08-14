@@ -45,12 +45,19 @@ const foodList = async (req, res, next) => {
 
 const removeFood = async (req, res, next) => {
   try {
-    const food = await foodModel.findById(req.body.id);
+    const food = await foodModel.findById(req.params.id); // Use req.params.id
     if (!food) return res.status(404).json("Food not found!");
-    //delete image from folder
-    fs.unlink(`uploads/${food.image}`, () => {});
-    const result = await foodModel.findByIdAndDelete(req.body.id);
-    if (!result) throw new Error("Food deleteing failed!");
+    
+    // Delete image from folder
+    fs.unlink(`uploads/${food.image}`, (err) => {
+      if (err) {
+        console.error('Error deleting image:', err);
+      }
+    });
+
+    const result = await foodModel.findByIdAndDelete(req.params.id); // Use req.params.id
+    if (!result) throw new Error("Food deletion failed!");
+    
     return res.status(200).json({
       statusCode: 200,
       message: "Food deleted successfully",
@@ -59,5 +66,6 @@ const removeFood = async (req, res, next) => {
     next(error);
   }
 };
+
 
 export { addFood, foodList, removeFood };

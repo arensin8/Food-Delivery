@@ -6,17 +6,17 @@ import validator from "validator";
 // user login
 const loginUser = async (req, res, next) => {
   try {
-    const { email, passowrd } = req.body;
+    const { email, password } = req.body;
     const user = await userModel.findOne({ email });
     if (!user)
       return res.status(404).json({
         statusCode: 404,
         message: "User not found!",
       });
-    const isMatched = await bcrypt.compare(password, user.password);
+    const isMatched = await bcrypt.compareSync(password, user.password);
     if (!isMatched)
-      return res.status(500).json({
-        statusCode: 500,
+      return res.status(401).json({
+        statusCode: 401,
         message: "Invalid credentials!",
       });
     const token = createToken(user._id);

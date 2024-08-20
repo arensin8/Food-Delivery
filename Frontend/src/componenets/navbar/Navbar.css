@@ -77,12 +77,41 @@
 
 .navbarProfile{
   position: relative;
+  transition: 0.3s ease-in;
 }
 
 .navProfileDropdown{
   position: absolute;
   display: none;
-  
+  right: 0;
+  z-index: 1;
+}
+
+.navbarProfile:hover .navProfileDropdown{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff2ef;
+  padding: 12px 25px;
+  border: 1px solid tomato;
+  border-radius: 4px;
+  outline: 2px solid white;
+  gap: 10px;
+  list-style: none;
+}
+
+.navProfileDropdown li{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.navProfileDropdown img{
+  width: 20px;
+}
+
+.navProfileDropdown li:hover{
+  color: tomato;
 }
 @media screen and (max-width: 1050px) {
   .navbar .logo {

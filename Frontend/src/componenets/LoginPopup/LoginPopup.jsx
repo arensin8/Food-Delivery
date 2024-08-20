@@ -29,7 +29,7 @@ const LoginPopup = ({ setShowLogin }) => {
     currState === "Login" ? (newUrl += '/api/user/login'):(newUrl += '/api/user/register')
     const response = await axios.post(newUrl,data)
     console.log(response);
-    if(response.status === 201){
+    if(response.status === 201 || response.status===200){
       console.log(response.data.token);
       setToken(response.data.token)
       localStorage.setItem("token",response.data.token)

@@ -75,6 +75,15 @@
   cursor: pointer;
 }
 
+.navbarProfile{
+  position: relative;
+}
+
+.navProfileDropdown{
+  position: absolute;
+  display: none;
+  
+}
 @media screen and (max-width: 1050px) {
   .navbar .logo {
     width: 90px;

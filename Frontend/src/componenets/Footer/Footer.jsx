@@ -42,7 +42,7 @@ const Footer = () => {
       </div>
       <hr />
       <p className="footerCW">
-        <p>Cpoyright 2024 &copy; ArensDelivery.com - All rights reserved.</p>
+        <p>Copyright 2024 &copy; ArensDelivery.com - All rights reserved.</p>
       </p>
     </div>
   );

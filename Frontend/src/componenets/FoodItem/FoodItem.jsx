@@ -4,12 +4,12 @@ import "./FoodItem.css";
 import { StoreContext } from "../../context/StoreContext";
 
 const FoodItem = ({ item }) => {
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItems, addToCart, removeFromCart,url } = useContext(StoreContext);
 
   return (
     <div className="foodItem">
       <div className="foodItemImgContainer">
-        <img className="foodItemImg" src={item.image} alt="image" />
+        <img className="foodItemImg" src={url+'/images/'+item.image} alt="image" />
         {!cartItems[item._id] ? (
           <img
             src={assets.add_icon_white}

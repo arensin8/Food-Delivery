@@ -9,9 +9,8 @@ const addToCart = async (req, res, next) => {
         statusCode: 404,
         message: "User not found!",
       });
-    const userData = await userModel.findOne({ _id: userId });
+    const userData = await userModel.findById(userId);
     let cartData = userData.cartData;
-    console.log(req.body.itemId);
     if (!cartData[req.body.itemId]) {
       cartData[req.body.itemId] = 1;
     } else {
@@ -28,9 +27,53 @@ const addToCart = async (req, res, next) => {
     next(error);
   }
 };
-
-// remove items from users cart
-const removeFromCart = (req, res, next) => {};
+// remove items from user's cart
+const removeFromCart = async (req, res, next) => {
+  try {
+    const itemId = req.body.itemId;
+    const userId = req.body.userId;
+    if (!itemId) {
+      return res.status(400).json({
+        statusCode: 400,
+        message: "Item ID are required!",
+      });
+    }
+    const userData = await userModel.findById(userId);
+    if (!userData) {
+      return res.status(404).json({
+        statusCode: 404,
+        message: "User not found!",
+      });
+    }
+    let cartData = userData.cartData;
+    if (cartData[itemId] && cartData[itemId] > 0) {
+      cartData[itemId] -= 1;
+      // Remove item from cart if quantity reaches zero
+      if (cartData[itemId] === 0) {
+        delete cartData[itemId];
+      }
+      const response = await userModel.findByIdAndUpdate(userId, { cartData });
+      if (!response) {
+        return res.status(500).json({
+          statusCode: 500,
+          message: "Removing item from cart failed!",
+        });
+      }
+      return res.status(200).json({
+        statusCode: 200,
+        message: "Item removed successfully",
+        cartData: response.cartData,
+      });
+    } else {
+      return res.status(400).json({
+        statusCode: 400,
+        message: "Item not found in cart or quantity is already zero",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 // get user cart items
 const getCartItems = (req, res, next) => {};

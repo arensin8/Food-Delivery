@@ -76,6 +76,23 @@ const removeFromCart = async (req, res, next) => {
 };
 
 // get user cart items
-const getCartItems = (req, res, next) => {};
+const getCartItems = async (req, res, next) => {
+  try {
+    const userId = req.body.userId;
+    const userData = await userModel.findById(userId);
+    const cartData = userData.cartData;
+    if (!cartData)
+      return res.status(500).json({
+        statusCode: 500,
+        message: "Cart data fetching failed!",
+      });
+    return res.status(200).json({
+      statusCode: 200,
+      cartData,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export { addToCart, removeFromCart, getCartItems };

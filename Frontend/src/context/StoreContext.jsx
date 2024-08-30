@@ -70,19 +70,29 @@ const StoreContextProvider = (props) => {
 
   const loadCartData = async (token) => {
     const response = await axios.post(url+"/api/cart/get",{},{headers : {token}})
-    await setCartItems(response.data.cartData)
+    setCartItems(response.data.cartData)
   };
 
   useEffect(() => {
-    async function loadData() {
-      await fetchFoodList();
-      if (localStorage.getItem("token")) {
-        setToken(localStorage.getItem("token"));
-        await loadCartData(localStorage.getItem("token"))
+    const loadData = async () => {
+      try {
+        // Fetch food list first
+        await fetchFoodList();
+  
+        // Check if token exists in local storage
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+          setToken(storedToken);
+          await loadCartData(storedToken);
+        }
+      } catch (error) {
+        console.error("Error loading data:", error);
       }
-    }
+    };
+  
     loadData();
   }, []);
+  
 
   const contextValue = {
     food_list,

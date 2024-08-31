@@ -43,6 +43,8 @@ const PlaceOrder = () => {
     if(response.status === 201 || response.status === 200){
       const {session_url} = response.data;
       window.location.replace(session_url)
+    }else{
+      alert("error")
     }
   }
 

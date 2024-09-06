@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
   const { getTotalCartAmount ,token,food_list,cartItems,url} = useContext(StoreContext);
-
+  const navigate = useNavigate()
   const [data,setData] = useState({
     firstName : "",
     lastName : "",
@@ -47,6 +48,14 @@ const PlaceOrder = () => {
       alert("error")
     }
   }
+
+  
+
+  useEffect(() => {
+    if(!token || getTotalCartAmount() === 0){
+      navigate('/cart')
+    }
+  },[token])
 
   return (
     <form className="placeOrder" onSubmit={placeOrder}>

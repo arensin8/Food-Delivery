@@ -64,14 +64,13 @@ const Navbar = ({ setShowLogin }) => {
         </div>
         {!token ? <button onClick={() => setShowLogin(true)}>Sign in</button> :
         (<div className="navbarProfile">
-<img src={assets.profile_icon} alt="profile" />
-<ul className="navProfileDropdown">
-  <li><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
-  <hr />
-  <li onClick={logout}><img src={assets.logout_icon} alt="" /><p>Log out</p></li>
-</ul>
+            <img src={assets.profile_icon} alt="profile" />
+            <ul className="navProfileDropdown">
+              <li onClick={() => navigate('/myorders')}><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
+              <hr />
+              <li onClick={logout}><img src={assets.logout_icon} alt="" /><p>Log out</p></li>
+            </ul>
         </div>)}
-    
       </div>
     </div>
   );

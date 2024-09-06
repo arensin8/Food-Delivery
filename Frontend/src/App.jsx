@@ -8,6 +8,7 @@ import ScrollToTop from "./componenets/scrollToTop/ScrollToTop";
 import { useState } from "react";
 import LoginPopup from "./componenets/LoginPopup/LoginPopup";
 import Verify from "./pages/verify/Verify";
+import MyOrders from "./pages/MyOrders/MyOrders";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
+          <Route path="/myorders" element={<MyOrders />} />
         </Routes>
       </div>
       <Footer />

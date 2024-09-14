@@ -29,8 +29,15 @@ app.get("/", (req, res) => {
   res.send("Hello Backend");
 });
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({
+    statusCode: 500,
+    message: "Something went wrong!",
+  });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-//mongodb+srv://arensin:arensin2002@cluster0.gwixf9b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

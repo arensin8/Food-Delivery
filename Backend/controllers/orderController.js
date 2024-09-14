@@ -82,11 +82,12 @@ const verifyOrder = async (req, res, next) => {
 const userOrders = async (req, res, next) => {
   try {
     const userId = req.body.userId;
-    const orders = await orderModel.find({userId});
-    if(!orders) return res.status(404).json({
-      statusCode : 404,
-      message : "Orders empty!"
-    })
+    const orders = await orderModel.find({ userId });
+    if (!orders)
+      return res.status(404).json({
+        statusCode: 404,
+        message: "Orders empty!",
+      });
     return res.status(200).json({
       statusCode: 200,
       data: orders,
@@ -96,4 +97,22 @@ const userOrders = async (req, res, next) => {
   }
 };
 
-export { placeOrder, verifyOrder, userOrders };
+//listing orders for admin panel
+const listOrders = async (req, res, next) => {
+  try {
+    const orders = await orderModel.find({});
+    if (!orders)
+      return res.status(404).json({
+        statusCode: 404,
+        message: `There aren't any orders"`,
+      });
+    res.status(200).json({
+      statusCode: 200,
+      data: orders,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { placeOrder, verifyOrder, userOrders, listOrders };

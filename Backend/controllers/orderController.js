@@ -5,7 +5,7 @@ import Stripe from "stripe";
 // Placing user order for front end
 const placeOrder = async (req, res, next) => {
   try {
-    const frontend_url = "http://localhost:5173";
+    const frontend_url = "http://localhost:5174";
     const { userId, items, address, amount } = req.body;
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     const newOrder = new orderModel({
@@ -104,7 +104,7 @@ const listOrders = async (req, res, next) => {
     if (!orders)
       return res.status(404).json({
         statusCode: 404,
-        message: `There aren't any orders"`,
+        message: `There aren't any orders`,
       });
     res.status(200).json({
       statusCode: 200,
@@ -115,4 +115,26 @@ const listOrders = async (req, res, next) => {
   }
 };
 
-export { placeOrder, verifyOrder, userOrders, listOrders };
+// api for updating order status
+const updateStatus = async (req, res, next) => {
+  const orderId = req.body.orderId;
+  try {
+    const result = await orderModel.findByIdAndUpdate(orderId, {
+      status: req.body.status,
+    });
+    if (!result) {
+      return res.status(500).json({
+        statusCode: 500,
+        message: `Something went wrong`,
+      });
+    }
+    res.status(200).json({
+      statusCode: 200,
+      message: "Order status updated",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };

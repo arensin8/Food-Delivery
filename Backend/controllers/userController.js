@@ -1,6 +1,6 @@
 import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs"; // updated
 import validator from "validator";
 
 // user login
@@ -13,12 +13,14 @@ const loginUser = async (req, res, next) => {
         statusCode: 404,
         message: "User not found!",
       });
-    const isMatched = await bcrypt.compareSync(password, user.password);
+
+    const isMatched = await bcrypt.compare(password, user.password); // updated
     if (!isMatched)
       return res.status(401).json({
         statusCode: 401,
         message: "Invalid credentials!",
       });
+
     const token = createToken(user._id);
     return res.status(200).json({
       statusCode: 200,
